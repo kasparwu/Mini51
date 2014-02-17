@@ -1,0 +1,46 @@
+;#<FEEDBACK># ARM Linker, 4.1 [Build 894]: Last Updated: Mon Feb 17 14:55:05 2014
+;VERSION 0.2
+;FILE main.o
+__asm___6_main_c_SYS_Init____REV16 <= USED 0
+__asm___6_main_c_SYS_Init____REVSH <= USED 0
+;FILE retarget.o
+GetChar <= USED 0
+IsDebugFifoEmpty <= USED 0
+SendChar <= USED 0
+__asm___10_retarget_c_871f546e____REV16 <= USED 0
+__asm___10_retarget_c_871f546e____REVSH <= USED 0
+_ttywrch <= USED 0
+fgetc <= USED 0
+kbhit <= USED 0
+;FILE startup_mini51series.o
+;FILE sys.o
+SYS_ClearResetSrc <= USED 0
+SYS_DisableBOD <= USED 0
+SYS_EnableBOD <= USED 0
+SYS_GetBODStatus <= USED 0
+SYS_GetResetSrc <= USED 0
+SYS_IsRegLocked <= USED 0
+SYS_ReadPDID <= USED 0
+SYS_ResetCPU <= USED 0
+SYS_ResetChip <= USED 0
+SYS_ResetModule <= USED 0
+__asm___5_sys_c_962b9fbe____REV16 <= USED 0
+__asm___5_sys_c_962b9fbe____REVSH <= USED 0
+;FILE system_mini51series.o
+__asm___21_system_Mini51Series_c_5d646a67____REV16 <= USED 0
+__asm___21_system_Mini51Series_c_5d646a67____REVSH <= USED 0
+;FILE uart.o
+UART_ClearIntFlag <= USED 0
+UART_Close <= USED 0
+UART_DisableFlowCtrl <= USED 0
+UART_DisableInt <= USED 0
+UART_EnableFlowCtrl <= USED 0
+UART_EnableInt <= USED 0
+UART_ReadBytes <= USED 0
+UART_SelectIrDAMode <= USED 0
+UART_SelectRS485Mode <= USED 0
+UART_SetLine_Config <= USED 0
+UART_SetTimeoutCnt <= USED 0
+UART_WriteBytes <= USED 0
+__asm___6_uart_c_f12f5b44____REV16 <= USED 0
+__asm___6_uart_c_f12f5b44____REVSH <= USED 0
