@@ -1,0 +1,1 @@
+--feedback ".\obj\LePower_SPI Dongle_V01.fed" -c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork -I..\..\Library\CMSIS\Include -I..\..\Library\Device\Nuvoton\Mini51Series\Include -I..\..\Library\StdDriver\inc -I C:\Keil\ARM\RV31\Inc -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\Nuvoton\Mini51 -o ".\obj\main.o" --omf_browse ".\obj\main.crf" --depend ".\obj\main.d" "..\main.c"

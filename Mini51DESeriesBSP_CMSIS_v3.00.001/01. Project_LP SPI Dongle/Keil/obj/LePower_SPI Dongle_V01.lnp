@@ -1,0 +1,4 @@
+--cpu Cortex-M0 ".\obj\system_mini51series.o" ".\obj\startup_mini51series.o" ".\obj\retarget.o" ".\obj\uart.o" ".\obj\sys.o" ".\obj\clk.o" ".\obj\timer.o" ".\obj\main.o" --ro-base 0x00000000 --entry 0x00000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --feedback ".\obj\LePower_SPI Dongle_V01.fed" 
+--strict --summary_stderr --info summarysizes --map --symbols 
+--info sizes --info totals 
+ --list ".\lst\LePower_SPI Dongle_V01.map" -o ".\obj\LePower_SPI Dongle_V01.axf"
