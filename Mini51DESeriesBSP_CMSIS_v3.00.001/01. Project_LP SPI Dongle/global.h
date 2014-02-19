@@ -14,7 +14,7 @@
 /*---------------------------------------------------------------------------------------------------------*/
 uint8_t g_u8SendData[12] ={0};
 uint8_t g_u8RecData[RXBUFSIZE]  ={0};
-volatile uint32_t	UART_Buffer[3]={0};
+volatile uint32_t	UART_Buffer[4]={0};
 
 volatile uint32_t g_u32comRbytes = 1;        
 volatile uint32_t g_u32comRhead  = 0;

@@ -48,6 +48,9 @@ void SYS_Init(void)
     
     /* Set P3 multi-function pins for Timer toggle output pin */
     SYS->P3_MFP = SYS_MFP_P34_T0 | SYS_MFP_P35_T1;	//Add by Kenny
+
+    /* Setup SPI multi-function pin */
+    SYS->P0_MFP |= SYS_MFP_P04_SPISS | SYS_MFP_P05_MOSI | SYS_MFP_P06_MISO | SYS_MFP_P07_SPICLK;
     
     /* Lock protected registers */
     SYS_LockReg();         
@@ -113,8 +116,17 @@ void UART_HANDLE()
 				UART_Buffer[3]=(UART_Buffer[1]<<4)+(UART_Buffer[2]);
 				Timer_Constant=UART_Buffer[3];
 				Timer_update();
+
+				SPI_WRITE_TX(SPI,UART_Buffer[3]);
+				SPI_TRIGGER(SPI);
+            	while(SPI_IS_BUSY(SPI));
+
 				printf(" \n Input Valuse is 0x%x \n",UART_Buffer[3]);
 
+				UART_Buffer[4]=SPI_READ_RX(SPI);
+;
+				printf(" \n Receive Valuse is 0x%x \n",UART_Buffer[4]);
+				
 				UART_ReadCounter=0;
 				Hello_Message();
 				}
@@ -172,10 +184,26 @@ void Hello_Message()
 	printf("Vsync_N (2xNx30Hz, N=0~4) : 1'h");
 }
 
+void SPI_Init(void)
+{
+/*---------------------------------------------------------------------------------------------------------*/
+/* Init SPI                                                                                                */
+/*---------------------------------------------------------------------------------------------------------*/
+    /* Configure as a master, clock idle low, falling clock edge Tx, rising edge Rx and 32-bit transaction */
+    /* Set IP clock divider. SPI clock rate = 2MHz */
+    SPI_Open(SPI, SPI_MASTER, SPI_MODE_0, 32, 2000000);
+	SPI_ENABLE_BYTE_REORDER(SPI);	
+
+    /* Enable the automatic hardware slave select function. Select the SS pin and configure as low-active. */
+    SPI_EnableAutoSS(SPI, SPI_SS, SPI_SS_ACTIVE_LOW);
+}
+
+
 int main()
 {
     
     SYS_Init();
+	SPI_Init();
 	Timer_Init();
 
     UART_Open(UART, 115200);

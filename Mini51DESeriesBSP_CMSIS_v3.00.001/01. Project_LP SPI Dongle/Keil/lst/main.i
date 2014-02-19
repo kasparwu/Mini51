@@ -8054,7 +8054,7 @@ void WDT_DisableInt(void);
  
 uint8_t g_u8SendData[12] ={0};
 uint8_t g_u8RecData[1024]  ={0};
-volatile uint32_t	UART_Buffer[3]={0};
+volatile uint32_t	UART_Buffer[4]={0};
 
 volatile uint32_t g_u32comRbytes = 1;        
 volatile uint32_t g_u32comRhead  = 0;
@@ -8077,6 +8077,8 @@ void UART_Disable(void);
 void Hello_Message(void);
 void Timer_Init(void);
 void Timer_update(void);
+void SPI_Init(void);
+
 #line 15 "..\\main.c"
 
 
@@ -8114,6 +8116,9 @@ void SYS_Init(void)
     
      
     ((GCR_T *) (((uint32_t)0x50000000) + 0x00000))->P3_MFP = 0x00000010UL | 0x00000020UL;	
+
+     
+    ((GCR_T *) (((uint32_t)0x50000000) + 0x00000))->P0_MFP |= 0x00001000UL | 0x00002000UL | 0x00004000UL | 0x00008000UL;
     
      
     SYS_LockReg();         
@@ -8179,8 +8184,17 @@ void UART_HANDLE()
 				UART_Buffer[3]=(UART_Buffer[1]<<4)+(UART_Buffer[2]);
 				Timer_Constant=UART_Buffer[3];
 				Timer_update();
+
+				SPI_WRITE_TX(((SPI_T *) (((uint32_t)0x40000000) + 0x30000)),UART_Buffer[3]);
+				SPI_TRIGGER(((SPI_T *) (((uint32_t)0x40000000) + 0x30000)));
+            	while(SPI_IS_BUSY(((SPI_T *) (((uint32_t)0x40000000) + 0x30000))));
+
 				printf(" \n Input Valuse is 0x%x \n",UART_Buffer[3]);
 
+				UART_Buffer[4]=SPI_READ_RX(((SPI_T *) (((uint32_t)0x40000000) + 0x30000)));
+;
+				printf(" \n Receive Valuse is 0x%x \n",UART_Buffer[4]);
+				
 				UART_ReadCounter=0;
 				Hello_Message();
 				}
@@ -8238,10 +8252,26 @@ void Hello_Message()
 	printf("Vsync_N (2xNx30Hz, N=0~4) : 1'h");
 }
 
+void SPI_Init(void)
+{
+ 
+ 
+ 
+     
+     
+    SPI_Open(((SPI_T *) (((uint32_t)0x40000000) + 0x30000)), (0x0), ((1ul << 2)), 32, 2000000);
+	SPI_ENABLE_BYTE_REORDER(((SPI_T *) (((uint32_t)0x40000000) + 0x30000)));	
+
+     
+    SPI_EnableAutoSS(((SPI_T *) (((uint32_t)0x40000000) + 0x30000)), ((1ul << 0)), (0x0));
+}
+
+
 int main()
 {
     
     SYS_Init();
+	SPI_Init();
 	Timer_Init();
 
     UART_Open(((UART_T *) (((uint32_t)0x40000000) + 0x50000)), 115200);

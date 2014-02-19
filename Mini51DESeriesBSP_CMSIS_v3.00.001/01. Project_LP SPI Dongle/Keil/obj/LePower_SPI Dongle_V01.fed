@@ -1,4 +1,4 @@
-;#<FEEDBACK># ARM Linker, 4.1 [Build 894]: Last Updated: Tue Feb 18 21:53:00 2014
+;#<FEEDBACK># ARM Linker, 4.1 [Build 894]: Last Updated: Wed Feb 19 09:18:24 2014
 ;VERSION 0.2
 ;FILE clk.o
 CLK_DisableCKO <= USED 0
@@ -8,7 +8,6 @@ CLK_EnableCKO <= USED 0
 CLK_EnableModuleClock <= USED 0
 CLK_EnableXtalRC <= USED 0
 CLK_GetCPUFreq <= USED 0
-CLK_GetHCLKFreq <= USED 0
 CLK_GetHXTFreq <= USED 0
 CLK_GetLXTFreq <= USED 0
 CLK_Idle <= USED 0
@@ -31,6 +30,19 @@ __asm___10_retarget_c_871f546e____REVSH <= USED 0
 _ttywrch <= USED 0
 fgetc <= USED 0
 kbhit <= USED 0
+;FILE spi.o
+SPI_ClearRxFIFO <= USED 0
+SPI_ClearTxFIFO <= USED 0
+SPI_Close <= USED 0
+SPI_DisableAutoSS <= USED 0
+SPI_DisableFIFO <= USED 0
+SPI_DisableInt <= USED 0
+SPI_EnableFIFO <= USED 0
+SPI_EnableInt <= USED 0
+SPI_GetBusClock <= USED 0
+SPI_SetBusClock <= USED 0
+__asm___5_spi_c_SPI_Open____REV16 <= USED 0
+__asm___5_spi_c_SPI_Open____REVSH <= USED 0
 ;FILE startup_mini51series.o
 ;FILE sys.o
 SYS_ClearResetSrc <= USED 0

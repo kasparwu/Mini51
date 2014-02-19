@@ -20,3 +20,5 @@ void UART_Disable(void);
 void Hello_Message(void);
 void Timer_Init(void);
 void Timer_update(void);
+void SPI_Init(void);
+
